@@ -1,17 +1,29 @@
 (function() {
     var app = angular.module('gemStore', []);
 
+    app.controller('GalleryController', function() {
+        this.current = 0;
+        this.setCurrent = function(current) {
+            if (current === null)
+                this.current = 0;
+            else
+                this.current = current;
+        };
+    });
+
     app.controller('StoreController', function() {
         this.products = gems;
     });
 
     app.controller('TabController', function() {
         this.tab = 1;
-        this.setTab = function(currentTab) {
-            this.tab = currentTab;
+
+        this.setTab = function(newValue) {
+            this.tab = newValue;
         };
-        this.isSet = function(currentTab) {
-            return this.tab == currentTab;
+
+        this.isSet = function(tabName) {
+            return this.tab === tabName;
         };
     });
 
