@@ -1,27 +1,35 @@
 (function() {
     var app = angular.module('gemStore', []);
 
+    app.controller('GalleryController', function() {
+        this.current = 0;
+        this.setCurrent = function(imageNumber) {
+            this.current = imageNumber || 0;
+        };
+    });
+
     app.controller('StoreController', function() {
         this.products = gems;
     });
 
-    app.controller("TabController", function() {
-        this.tab = 1;
 
-        this.isSet = function(checkTab) {
-            return this.tab === checkTab;
-        };
 
-        this.setTab = function(setTab) {
-            this.tab = setTab;
-        };
-    });
+    app.directive("productTabs", function() {
+        return {
+            restrict: 'E',
+            templateUrl: "product-tabs.html",
+            controller: function() {
+                this.tab = 1;
 
-    app.controller('GalleryController', function() {
-        this.current = 0;
+                this.isSet = function(checkTab) {
+                    return this.tab === checkTab;
+                };
 
-        this.setCurrent = function(imageNumber) {
-            this.current = imageNumber || 0;
+                this.setTab = function(setTab) {
+                    this.tab = setTab;
+                };
+            },
+            controllerAs: "tab"
         };
     });
 
@@ -30,28 +38,32 @@
         this.review = {};
 
         this.addReview = function(product) {
-            this.review = {
-                createdOn: Date.now()
-            };
             product.reviews.push(this.review);
             this.review = {};
         };
+
     });
 
     app.directive("productDescription", function() {
         return {
-            restrict: "E",
+            restrict: 'E',
             templateUrl: "product-description.html"
         };
     });
-    
+
+    app.directive("productReviews", function() {
+        return {
+            restrict: 'E',
+            templateUrl: "product-reviews.html"
+        };
+    });
+
     app.directive("productSpecs", function() {
         return {
             restrict: "A",
             templateUrl: "product-specs.html"
         };
     });
-
 
     var gems = [{
         name: 'Azurite',
@@ -69,13 +81,11 @@
         reviews: [{
             stars: 5,
             body: "I love this gem!",
-            author: "joe@example.org",
-            createdOn: 1397490980837
+            author: "joe@example.org"
         }, {
             stars: 1,
             body: "This gem sucks.",
-            author: "tim@example.org",
-            createdOn: 1397490980837
+            author: "tim@example.org"
         }]
     }, {
         name: 'Bloodstone',
@@ -88,18 +98,16 @@
         images: [
             "images/gem-01.gif",
             "images/gem-03.gif",
-            "images/gem-04.gif",
+            "images/gem-04.gif"
         ],
         reviews: [{
             stars: 3,
             body: "I think this gem was just OK, could honestly use more shine, IMO.",
-            author: "JimmyDean@example.org",
-            createdOn: 1397490980837
+            author: "JimmyDean@example.org"
         }, {
             stars: 4,
             body: "Any gem with 12 faces is for me!",
-            author: "gemsRock@example.org",
-            createdOn: 1397490980837
+            author: "gemsRock@example.org"
         }]
     }, {
         name: 'Zircon',
@@ -117,18 +125,15 @@
         reviews: [{
             stars: 1,
             body: "This gem is WAY too expensive for its rarity value.",
-            author: "turtleguyy@example.org",
-            createdOn: 1397490980837
+            author: "turtleguyy@example.org"
         }, {
             stars: 1,
             body: "BBW: High Shine != High Quality.",
-            author: "LouisW407@example.org",
-            createdOn: 1397490980837
+            author: "LouisW407@example.org"
         }, {
             stars: 1,
             body: "Don't waste your rubles!",
-            author: "nat@example.org",
-            createdOn: 1397490980837
+            author: "nat@example.org"
         }]
     }];
 })();
