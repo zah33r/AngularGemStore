@@ -1,11 +1,93 @@
 <!DOCTYPE html>
-<html ng-app="gemStore">
+<html lang="en" ng-app="gemStore">
 
 <head>
-    
-    <!--<link rel="stylesheet" type="text/css" href="bootstrap.min.css" />-->
-    
-    <!-- Latest compiled and minified CSS -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>- Angular Gem Store -</title>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!--    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body ng-controller="StoreController as store">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Gem Store</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" placeholder="Email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-success">Sign in</button>
+                </form>
+            </div>
+            <!--/.navbar-collapse -->
+        </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="text-center">Flatlander Crafted Gems</h1>
+            <p class="text-center">– an Angular store –</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 list-group-item" ng-repeat="product in store.products">
+                <h3>{{product.name}} <em class="pull-right">{{product.price | currency}}</em></h3>
+
+                <!-- Image Gallery  -->
+                <product-gallery></product-gallery>
+
+                <!-- Product Tabs  -->
+                <product-tabs></product-tabs>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <footer class="item-align-center">
+        <p>&copy; 2016 Angular 1.x, Inc.</p>
+    </footer>
+    <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+    </script>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Optional theme -->
@@ -13,33 +95,15 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        
-    <script type="text/javascript" src="angular.min.js"></script>
-    <script type="text/javascript" src="app.js"></script>
-    <script type="text/javascript" src="products.js"></script>
-</head>
 
-<body ng-controller="StoreController as store">
-    <!--  Store Header  -->
-    <header>
-        <h1 class="text-center">Flatlander Crafted Gems</h1>
-        <h2 class="text-center">– an Angular store –</h2>
-    </header>
-
-    <!--  Products Container  -->
-    <div class="list-group">
-        <!--  Product Container  -->
-        <div class="list-group-item" ng-repeat="product in store.products">
-            <h3>{{product.name}} <em class="pull-right">{{product.price | currency}}</em></h3>
-
-            <!-- Image Gallery  -->
-            <product-gallery></product-gallery>
-
-            <!-- Product Tabs  -->
-            <product-tabs></product-tabs>
-        </div>
-
-    </div>
+    <script type="text/javascript" src="..\lib\angular.min.js"></script>
+    <script type="text/javascript" src="..\controller\app.js"></script>
+    <script type="text/javascript" src="..\directive\products.js"></script>
+    
+        <!-- Custom styles for this template -->
+    <link href="..\styles\jumbotron.css" rel="stylesheet">
+    <link href="..\styles\application.css" rel="stylesheet">
+    
 </body>
 
 </html>
