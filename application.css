@@ -10,3 +10,14 @@
     border-color: green;
 
 }
+
+.small-image-gallery{
+    width: 33%;
+    height: 33%;
+    float: left;
+    padding-bottom: 10%;
+}
+
+.item-align-center{
+    text-align: center;
+}
